@@ -28,19 +28,6 @@ export function UsersPage() {
     getUsers();
   }, [loadUsers])
 
-  const handleDeleteUser = useCallback(async (userId: string) => {
-    const confirmed = window.confirm('Are you sure you want to delete this user?')
-    if (confirmed) {
-      try {
-        await UserRepository.delete(userId)
-        await loadUsers()
-      } catch (err) {
-        console.error('Failed to delete user:', err)
-        alert('Failed to delete user')
-      }
-    }
-  }, [loadUsers])
-
   const handleAddUser = useCallback(() => {
     alert('TODO: Implement add user modal')
   }, [])
@@ -78,8 +65,6 @@ export function UsersPage() {
         <div className={styles.tableWrapper}>
           <UserTable
               users={users}
-              onEditUser={handleEditUser}
-              onDeleteUser={handleDeleteUser}
           />
         </div>
     </div>

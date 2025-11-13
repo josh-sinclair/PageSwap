@@ -210,6 +210,7 @@ The CTO's initial implementation has several layout and styling issues that don'
 - Focus on **quality over quantity**
 - Complete at least **Ticket 1** to a production-ready standard
 - If time permits, tackle Ticket 2 and/or Ticket 3
+- Could you're implementations executed for Ticket 1 be leveraged in Ticket 2 and 3?
 - **Partial completion is acceptable** - we'd rather see one ticket done excellently than three done poorly
 
 In a real-world scenario, you'd complete Ticket 1, submit a PR, and continue with Tickets 2 and 3 in subsequent PRs.

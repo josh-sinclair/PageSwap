@@ -26,20 +26,16 @@ export class ImageRepository {
      * @returns Promise resolving to a blob URL that can be used in <img src="">
      */
     static async get(id: string): Promise<string> {
-        try {
-            await this.simulateNetworkDelay();
-            const response = await fetch(`${this.basePath}/${id}.jpg`);
+        await this.simulateNetworkDelay();
+        const response = await fetch(`${this.basePath}/${id}.jpg`);
 
-            if (!response.ok) {
-                throw new Error(`Failed to fetch image: ${response.statusText}`);
-            }
-            
-            const blob = await response.blob();
-            
-            return URL.createObjectURL(blob);
-        } catch (error) {
-            throw error;
+        if (!response.ok) {
+            throw new Error(`Failed to fetch image: ${response.statusText}`);
         }
+
+        const blob = await response.blob();
+
+        return URL.createObjectURL(blob);
     }
 
     /**

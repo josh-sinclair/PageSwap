@@ -15,13 +15,11 @@ import styles from './UserTable.module.css'
 
 interface UserTableProps {
   users: IUser[]
-  onEditUser?: (user: IUser) => void
-  onDeleteUser?: (userId: string) => void
 }
 
 const columnHelper = createColumnHelper<IUser>()
 
-export function UserTable({ users, onEditUser, onDeleteUser }: UserTableProps) {
+export function UserTable({ users }: UserTableProps) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
@@ -113,19 +111,17 @@ export function UserTable({ users, onEditUser, onDeleteUser }: UserTableProps) {
       columnHelper.display({
         id: 'actions',
         header: 'Row Control',
-        cell: (info) => (
+        cell: () => (
           <div className={styles.actions}>
-            {onDeleteUser && (
               <button
               >
                 Remove
               </button>
-            )}
           </div>
         ),
       }),
     ],
-    [onEditUser, onDeleteUser]
+    []
   )
 
   const table = useReactTable({
