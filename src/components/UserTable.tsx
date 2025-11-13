@@ -11,7 +11,6 @@ import {
 } from '@tanstack/react-table'
 import type { IUser } from '../types/IUser.ts'
 import { UserAvatar } from './UserAvatar'
-import { Button } from './Button'
 import styles from './UserTable.module.css'
 
 interface UserTableProps {
@@ -159,7 +158,6 @@ export function UserTable({ users, onEditUser, onDeleteUser }: UserTableProps) {
   }
     
     return (
-    <div className={styles.tableContainer}>
       <table className={styles.table}>
         <thead className={styles.thead}>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -193,7 +191,5 @@ export function UserTable({ users, onEditUser, onDeleteUser }: UserTableProps) {
           ))}
         </tbody>
       </table>
-      <br></br>
-    </div>
     )
 }

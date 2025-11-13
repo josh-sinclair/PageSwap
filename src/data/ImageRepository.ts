@@ -25,19 +25,15 @@ export class ImageRepository {
      * @param id - The image file ID (without extension)
      * @returns Promise resolving to a blob URL that can be used in <img src="">
      */
-    static async getImage(id: string): Promise<string> {
+    static async get(id: string): Promise<string> {
         try {
-            // Simulate network delay
             await this.simulateNetworkDelay();
-
-            // Fetch the image
             const response = await fetch(`${this.basePath}/${id}.jpg`);
 
             if (!response.ok) {
                 throw new Error(`Failed to fetch image: ${response.statusText}`);
             }
-
-            // Convert to blob
+            
             const blob = await response.blob();
             
             return URL.createObjectURL(blob);
@@ -59,7 +55,7 @@ export class ImageRepository {
         await Promise.all(
             ids.map(async (id) => {
                 try {
-                    const url = await this.getImage(id);
+                    const url = await this.get(id);
                     results.set(id, url);
                 } catch (error) {
                     console.error(`Failed to preload image ${id}:`, error);

@@ -48,6 +48,7 @@ export class UserRepository {
 
                 request.onsuccess = () => {
                     const allUsers = request.result as IUser[];
+                    
                     // Apply pagination
                     const paginatedUsers = allUsers.slice(skip, skip + take);
                     resolve(paginatedUsers);
@@ -117,8 +118,7 @@ export class UserRepository {
                     const db = await initDB();
                     const transaction = db.transaction('users', 'readwrite');
                     const store = transaction.objectStore('users');
-
-                    // Add all users
+                    
                     users.forEach(user => store.put(user));
 
                     transaction.oncomplete = () => {
